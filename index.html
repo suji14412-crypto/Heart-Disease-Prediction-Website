@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Educational project: Heart Disease Prediction Using Logistic Regression">
+  <title>Heart Disease Prediction Using Logistic Regression</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="navbar" id="navbar">
+    <a href="#home" class="logo">💙 HeartPredict<span>ML</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav id="navLinks" class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#dataset">Dataset</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#preprocessing">Preprocessing</a>
+      <a href="#model">Model</a>
+      <a href="#performance">Results</a>
+      <a href="#demo" class="nav-cta">Try Demo</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== 1. HOME ===== -->
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <p class="badge">Educational college project</p>
+        <h1>Heart Disease Prediction Using Logistic Regression</h1>
+        <p class="lead">A machine learning project that studies 920 patient records and uses Logistic Regression to classify each record as heart-disease positive or negative.</p>
+        <div class="btn-row">
+          <a href="#about" class="btn btn-primary">Explore Project</a>
+          <a href="#demo" class="btn btn-ghost">Try Demo</a>
+        </div>
+        <p class="notice">⚠️ This is an educational project. It is <strong>not</strong> a medical diagnostic tool.</p>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="ecg-card">
+          <div class="ecg-top"><span class="dot"></span> Live ECG style animation</div>
+          <svg viewBox="0 0 400 120" class="ecg">
+            <path d="M0 60 H70 L85 60 L95 20 L110 100 L122 60 H170 L180 48 L192 60 H250 L262 60 L272 8 L288 110 L300 60 H400" />
+          </svg>
+          <div class="ecg-stats"><span><b>920</b> records</span><span><b>16</b> attributes</span><span><b>2</b> classes</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. ABOUT ===== -->
+    <section class="section" id="about">
+      <h2>About the project</h2>
+      <div class="two-col">
+        <div>
+          <h3>Why predict heart disease?</h3>
+          <p>Heart disease is one of the leading causes of death worldwide. Spotting risk patterns early can help doctors decide who needs further tests and care.</p>
+          <h3>How can machine learning help?</h3>
+          <p>A machine learning model looks at many health values at once (age, blood pressure, cholesterol and more) and learns which combinations are linked with heart disease in past records.</p>
+        </div>
+        <div>
+          <h3>Project objectives</h3>
+          <ul class="checks">
+            <li>Clean and prepare a real-world clinical dataset.</li>
+            <li>Explore the data with charts and statistics.</li>
+            <li>Train a Logistic Regression classifier.</li>
+            <li>Evaluate it on data it has never seen.</li>
+            <li>Present the work in a simple website.</li>
+          </ul>
+          <div class="callout"><strong>Logistic Regression in simple English:</strong> it gives each input a weight, adds them up, and turns the total into a probability between 0 and 1. If the probability is above 0.5, it predicts "disease"; otherwise "no disease".</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. DATASET ===== -->
+    <section class="section alt" id="dataset">
+      <h2>Dataset overview</h2>
+      <div class="stats-grid">
+        <div class="stat"><span class="icon">🧾</span><b data-count="920">0</b><p>Patient records</p></div>
+        <div class="stat"><span class="icon">📋</span><b data-count="16">0</b><p>Clinical attributes</p></div>
+        <div class="stat pos"><span class="icon">❤️</span><b data-count="509">0</b><p>Disease-positive (1)</p></div>
+        <div class="stat neg"><span class="icon">💚</span><b data-count="411">0</b><p>Disease-negative (0)</p></div>
+      </div>
+      <p class="note">The target column is <code>num</code>. It was converted into a binary target: <strong>0</strong> means no disease and <strong>1</strong> means disease.</p>
+      <div class="bar-wrap" aria-label="Class balance">
+        <div class="bar"><div class="bar-pos" style="width:55.3%">1: 55.3%</div><div class="bar-neg" style="width:44.7%">0: 44.7%</div></div>
+      </div>
+    </section>
+
+    <!-- ===== 4. WORKFLOW ===== -->
+    <section class="section" id="workflow">
+      <h2>Machine learning workflow</h2>
+      <ol class="flow">
+        <li><span>📥</span>Dataset collection</li>
+        <li><span>🧹</span>Data cleaning</li>
+        <li><span>🕳️</span>Missing-value handling</li>
+        <li><span>👯</span>Duplicate checking</li>
+        <li><span>🔢</span>Categorical encoding</li>
+        <li><span>📊</span>Exploratory Data Analysis</li>
+        <li><span>✂️</span>Training and testing split</li>
+        <li><span>🧠</span>Logistic Regression training</li>
+        <li><span>✅</span>Model evaluation</li>
+        <li><span>🔮</span>Prediction</li>
+      </ol>
+    </section>
+
+    <!-- ===== 5. PREPROCESSING ===== -->
+    <section class="section alt" id="preprocessing">
+      <h2>Data preprocessing</h2>
+      <div class="accordion">
+        <details open>
+          <summary>Missing-value imputation (median and mode)</summary>
+          <p>Real data often has empty cells. For number columns we fill gaps with the <strong>median</strong> (the middle value, which is not distorted by extreme values). For category columns we use the <strong>mode</strong> (the most common value).</p>
+        </details>
+        <details>
+          <summary>Duplicate record checking</summary>
+          <p>If the same patient row appears twice, the model may learn it too strongly. We check for repeated rows and handle them so every record counts fairly.</p>
+        </details>
+        <details>
+          <summary>Label Encoding</summary>
+          <p>Models work with numbers, not words. Label Encoding turns text categories (for example "Male" and "Female") into numbers (for example 1 and 0).</p>
+        </details>
+        <details>
+          <summary>Data preparation before training</summary>
+          <p>After cleaning and encoding, the data is split into input features (X) and the target (y), and then into training and testing sets so the model can be tested fairly.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===== 6. MODEL INFO ===== -->
+    <section class="section" id="model">
+      <h2>Model information</h2>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="ai" role="tab">Artificial Intelligence</button>
+        <button class="tab" data-tab="ml" role="tab">Machine Learning</button>
+        <button class="tab" data-tab="sup" role="tab">Supervised Learning</button>
+        <button class="tab" data-tab="cls" role="tab">Classification</button>
+        <button class="tab" data-tab="lr" role="tab">Logistic Regression</button>
+        <button class="tab" data-tab="why" role="tab">Why for binary?</button>
+      </div>
+      <div class="tab-panel active" id="ai"><p><strong>Artificial Intelligence (AI)</strong> is the field of building computer systems that do tasks which normally need human intelligence, such as understanding language, recognising images or making decisions.</p></div>
+      <div class="tab-panel" id="ml"><p><strong>Machine Learning (ML)</strong> is a part of AI. Instead of writing every rule by hand, we give the computer data and let it learn the patterns by itself.</p></div>
+      <div class="tab-panel" id="sup"><p><strong>Supervised learning</strong> means learning from examples that already have the correct answer (a label). Here, every patient record is labelled 0 or 1, so the model can learn from them.</p></div>
+      <div class="tab-panel" id="cls"><p><strong>Classification</strong> is a supervised task where the answer is a category, not a number. Our categories are "disease" and "no disease".</p></div>
+      <div class="tab-panel" id="lr"><p><strong>Logistic Regression</strong> is a classification algorithm. It combines the inputs into one score and passes it through the sigmoid function, which squeezes any number into a probability from 0 to 1.</p></div>
+      <div class="tab-panel" id="why"><p>With only two possible outcomes, Logistic Regression is a natural fit. It outputs a probability, it is fast to train, and its weights are easy to read and explain, which matters in healthcare.</p></div>
+    </section>
+
+    <!-- ===== 7. PERFORMANCE ===== -->
+    <section class="section alt" id="performance">
+      <h2>Model performance</h2>
+      <p class="note">Reported results from the project's own notebook. These are not clinical validation.</p>
+      <div class="stats-grid">
+        <div class="stat"><span class="icon">🎯</span><b>78.8%</b><p>Test accuracy</p></div>
+        <div class="stat"><span class="icon">🔬</span><b>0.86</b><p>Disease-class precision</p></div>
+        <div class="stat"><span class="icon">📡</span><b>0.76</b><p>Disease-class recall</p></div>
+        <div class="stat"><span class="icon">⚖️</span><b>80:20</b><p>Train-test split</p></div>
+      </div>
+    </section>
+
+    <!-- ===== 8. DEMO ===== -->
+    <section class="section" id="demo">
+      <h2>Interactive prediction demo</h2>
+      <div class="warning">
+        <strong>Demonstration only.</strong> This form uses simple sample logic written in JavaScript. It is <strong>not</strong> connected to a trained machine learning model. Do not use it to make medical decisions.
+      </div>
+      <div class="demo-grid">
+        <form id="demoForm" novalidate>
+          <div class="field">
+            <label for="age">Age (years)</label>
+            <input type="number" id="age" min="1" max="120" placeholder="e.g. 54" required>
+            <small class="error" id="ageErr"></small>
+          </div>
+          <div class="field">
+            <label for="sex">Sex</label>
+            <select id="sex" required>
+              <option value="">Select...</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+            <small class="error" id="sexErr"></small>
+          </div>
+          <div class="field">
+            <label for="cp">Chest pain type (example input)</label>
+            <select id="cp" required>
+              <option value="">Select...</option>
+              <option value="none">No chest pain</option>
+              <option value="atypical">Atypical</option>
+              <option value="typical">Typical angina</option>
+            </select>
+            <small class="error" id="cpErr"></small>
+          </div>
+          <div class="field">
+            <label for="bp">Resting blood pressure (mm Hg)</label>
+            <input type="number" id="bp" min="50" max="250" placeholder="e.g. 130" required>
+            <small class="error" id="bpErr"></small>
+          </div>
+          <div class="field">
+            <label for="chol">Cholesterol (mg/dl)</label>
+            <input type="number" id="chol" min="50" max="700" placeholder="e.g. 240" required>
+            <small class="error" id="cholErr"></small>
+          </div>
+          <div class="field">
+            <label for="hr">Maximum heart rate (bpm)</label>
+            <input type="number" id="hr" min="40" max="230" placeholder="e.g. 150" required>
+            <small class="error" id="hrErr"></small>
+          </div>
+          <div class="field check">
+            <input type="checkbox" id="angina">
+            <label for="angina">Exercise-induced chest pain</label>
+          </div>
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary">Predict</button>
+            <button type="button" id="resetBtn" class="btn btn-ghost">Reset</button>
+          </div>
+        </form>
+
+        <div class="result" id="result" aria-live="polite">
+          <p class="placeholder">Fill in the form and press <strong>Predict</strong>. The demo result will appear here.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 9. TECHNOLOGIES ===== -->
+    <section class="section alt" id="tech">
+      <h2>Technologies used</h2>
+      <div class="tech-grid">
+        <div class="tech">🐍<b>Python</b><p>Main language</p></div>
+        <div class="tech">🐼<b>Pandas</b><p>Data tables</p></div>
+        <div class="tech">🔢<b>NumPy</b><p>Fast maths</p></div>
+        <div class="tech">📈<b>Matplotlib</b><p>Charts</p></div>
+        <div class="tech">🎨<b>Seaborn</b><p>Statistical plots</p></div>
+        <div class="tech">🤖<b>Scikit-learn</b><p>ML model</p></div>
+        <div class="tech">🧱<b>HTML</b><p>Page structure</p></div>
+        <div class="tech">🎀<b>CSS</b><p>Styling</p></div>
+        <div class="tech">⚡<b>JavaScript</b><p>Interactivity</p></div>
+        <div class="tech">📓<b>Colab / Jupyter</b><p>Notebook</p></div>
+      </div>
+    </section>
+
+    <!-- ===== 10. SUMMARY ===== -->
+    <section class="section" id="summary">
+      <h2>Project summary</h2>
+      <div class="summary-grid">
+        <article><h3>What it does</h3><p>It cleans a 920-record clinical dataset and trains Logistic Regression to classify records as disease or no disease.</p></article>
+        <article><h3>What I learned</h3><p>How an ML project flows from raw data to evaluation, and how to read accuracy, precision and recall.</p></article>
+        <article><h3>Role of Logistic Regression</h3><p>It is the core classifier. It turns the patient's values into a probability and then into a 0 or 1 decision.</p></article>
+        <article><h3>Why preprocessing matters</h3><p>Missing values, duplicates and text categories can confuse a model. Clean, numeric data gives more reliable learning.</p></article>
+        <article><h3>Limitations</h3><p>One dataset, one simple model and no clinical validation. The website demo does not use the real model.</p></article>
+        <article><h3>Future improvements</h3><p>Save the trained model, serve it with Flask or FastAPI, connect it to this form, and compare other algorithms.</p></article>
+      </div>
+    </section>
+
+    <!-- ===== 11. DEVELOPER ===== -->
+    <section class="section alt" id="developer">
+      <h2>About the developer</h2>
+      <div class="profile">
+        <div class="avatar">👩‍💻</div>
+        <div>
+          <h3>[Your Name Here]</h3>
+          <p>I am a college student interested in AI and machine learning. This project helped me practise data cleaning, modelling and building a simple website to present my work.</p>
+          <p><strong>Project:</strong> Heart Disease Prediction Using Logistic Regression</p>
+          <div class="chips"><span>Python</span><span>Pandas</span><span>Scikit-learn</span><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 12. FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <b>HeartPredictML</b>
+        <p>Heart Disease Prediction Using Logistic Regression. An educational project, not a medical tool.</p>
+      </div>
+      <div>
+        <b>Navigate</b>
+        <a href="#home">Home</a><a href="#about">About</a><a href="#dataset">Dataset</a><a href="#demo">Demo</a>
+      </div>
+      <div>
+        <b>More</b>
+        <a href="#performance">Results</a><a href="#tech">Technologies</a><a href="#summary">Summary</a><a href="#developer">Developer</a>
+      </div>
+    </div>
+    <p class="copy">&copy; <span id="year"></span> [Your Name Here]. All rights reserved.</p>
+  </footer>
+
+  <button id="topBtn" class="top-btn" aria-label="Back to top">↑</button>
+    <script src="js/script.js" defer></script>
+
+</body>
+</html>
